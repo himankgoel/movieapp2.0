@@ -1,0 +1,52 @@
+body{
+    background-color: black;
+    overflow-x: hidden;
+}
+h1,h5{
+    color: white;
+}
+h6{
+    color: gray;
+}
+.form-control-width{
+    width : 100%;
+}
+.movie-tile-div{
+    height: 35px;
+    width: 210px;
+
+}
+.movie-tile{
+    height: 315px; 
+    width: 210px;
+    border:4px solid white;
+    margin-bottom: 9%;
+}
+.second-row{
+    margin-left: 7%;
+    margin-top: 12%;
+}
+.custom-row{
+    margin-top: 9%;
+    margin-left:10% ;
+}
+.form-inline{
+    margin: 0 33% ;
+}
+.card{
+    margin: 0 3% 5% 3%;
+}
+.card-body{
+   background-color: #706c61;
+}
+.form-class{
+  width: 100%;
+  background-color: #0f4c75;
+  display: inline-block;
+}
+.form-group{
+  margin : 0 3% 3% 3%;
+}
+.form-class button{
+  margin-left: 33%;
+}

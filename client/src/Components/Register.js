@@ -1,10 +1,10 @@
 import React, { useState , useContext } from "react";
-import {registerUserWithNameEmailAndPass} from "./Auth";
+import {registerUserWithNameEmailAndPass , toVerifyToken} from "./Auth";
 import {UserContext} from "../UserContext"; 
 import { Redirect } from "react-router";
 
 function Register(props){
-    const { user } = useContext(UserContext);
+    const { user , setUser} = useContext(UserContext);
     const [userRegister , setUserRegister] = useState({ 
       name : "",
       email: "",
@@ -14,6 +14,12 @@ function Register(props){
       msg: "",
       style: { }
     });
+
+    async function tokenVerify(){
+      const resp = await toVerifyToken();
+      setUser(resp.data.user1);
+    }
+
     function handleChange(event){
       const { name, value } = event.target;
       setUserRegister(prevValue => {
@@ -23,7 +29,7 @@ function Register(props){
         }
       });
     }
-    async function handleSubmit(){
+    async function handleSubmit(){ 
       setUserRegister({
         name : "",
         email : "",
@@ -33,6 +39,7 @@ function Register(props){
       const status = await registerUserWithNameEmailAndPass(name,email,password);
       if(status === 200){
         setMessage({ msg: "Register Successful !", style: { color: "green" } });
+        tokenVerify();
       setTimeout(() => {
         props.history.push("/");
       }, 1000);

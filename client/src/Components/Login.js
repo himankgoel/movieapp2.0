@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { loginUserWithEmailAndPassword } from "./Auth";
+import { loginUserWithEmailAndPassword ,toVerifyToken } from "./Auth";
 import { UserContext } from "../UserContext";
 import { Redirect } from "react-router";
 
 function Login(props) {
-  const { user } = useContext(UserContext);
+  const { user , setUser} = useContext(UserContext);
   const [message, setMessage] = useState({
     msg: "",
     style: { color: "red" } ,
@@ -14,6 +14,11 @@ function Login(props) {
     email: "",
     password: ""
   });
+
+  async function tokenVerify(){
+    const resp = await toVerifyToken();
+    setUser(resp.data.user1);
+  }
   function handleChange(event) {
     const { name, value } = event.target;
     setUserLogin(prevValue => {
@@ -28,10 +33,11 @@ function Login(props) {
       email: "",
       password: ""
     });
-    const { email, password } = userLogin;
+    const { email, password } = userLogin; 
     const status = await loginUserWithEmailAndPassword(email, password);
     if (status === 200) {
       setMessage({ msg: "Login Successful !", style: { color: "green" } , iconClass : "fas fa-lock-open fa-9x" });
+      tokenVerify();
       setTimeout(() => {
         props.history.push("/");
       }, 1000);
@@ -44,8 +50,8 @@ function Login(props) {
   return user ? (
     <Redirect to="/" />
   ) : (
-    <div className="form-class">
-      <i class={message.iconClass} style={{marginLeft : "50%"}}></i>
+    <div className="container mt-5">
+      <i class={message.iconClass}></i>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input

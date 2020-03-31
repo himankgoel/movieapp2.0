@@ -1,7 +1,11 @@
 import React , {useState, useEffect} from "react";
+
 import axios from "axios";
 
 function MovieDetailPage(props){
+
+  
+
 
     const [Movie , setMovie] = useState(
         {       Title : "", 
@@ -31,9 +35,10 @@ function MovieDetailPage(props){
             const Poster = res.data.Poster;
             const Ratings = res.data.Ratings[0];
             const type = res.data.type;
+            console.log(res.data);
             setMovie({Title,Year,Rated,Released,Runtime,Genre, Director , Plot, Poster, Ratings,type});
     });
-    });
+    },[props.match.params.movieid]);
     return <div class="row second-row">
         <div className="col-lg-4">
             <img src={Movie.Poster}
@@ -46,7 +51,9 @@ function MovieDetailPage(props){
             <h5>{Movie.Genre} </h5>
             <h6>Plot : {Movie.Plot} </h6>
             <img src="https://yts.mx/assets/images/website/logo-imdb.svg" alt="IMDb Rating"></img>
+            <div style={{marginBottom : "5em"}}>
             <h6>{Movie.Ratings.Value}</h6>
+        </div>
         </div>
      </div>
 } 

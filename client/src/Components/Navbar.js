@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link class="navbar-brand" to="/">
-        muviesbox
+        MovieInfo
       </Link>
       <button
         class="navbar-toggler"

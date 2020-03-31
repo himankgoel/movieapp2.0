@@ -12,7 +12,7 @@ function CreateMovieTile(props) {
     await addToFavourite(props.imdbID);
     setIsAddedToFavourite(true);
   }
-  const to = "/movie/" + props.imdbID;
+  const to = "/info/" + props.imdbID; 
 
   useEffect(() => {
        if(user !== null){

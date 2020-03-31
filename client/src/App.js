@@ -35,7 +35,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/movie/:movieid" component={MovieDetailPage} />
+            <Route exact path="/info/:movieid" component={MovieDetailPage} />
             <Route exact path="/favourite-movies" component={FavouriteMovies} />
           </UserContext.Provider>
         </div>

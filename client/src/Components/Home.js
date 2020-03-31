@@ -7,38 +7,21 @@ function Home() {
   const [searchResults, setSearchResults] = useState([]); //SEARCH RESULTS BASED ON QUERY
   async function handleChange(event) {
     setQuery(event.target.value);
-    if (query.length > 1) {
-      const searchResults = await retrieveMovies(query);
+      try{
+      const searchResults = await retrieveMovies(event.target.value);
       setSearchResults(searchResults);
-    }
+      }
+      catch(err){
+          setSearchResults([]);
+      }
   }
-  //DEFAULT HOME PAGE
-  const movieArray = [
-    {
-      src:
-        "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-      imdbID: "tt0848228",
-      Title : "The Avengers"
-    },
-    {
-      src:
-        "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg",
-      imdbID: "tt4154756",
-      Title : "Avengers : Infinity War"
-    },
-    {
-      src:
-        "https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg",
-      imdbID: "tt2395427",
-      Title : "Avengers : Age of Ultron"
-    }
-  ];
 
   return (
     <div>
-      <div class="row custom-row">
-          <div class="col-lg-6">
+      <div class="row ">
+          <div class="col-lg-6 container mt-5 col-sm-10">
         <input
+        style={{borderColor : "black"}}
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
@@ -49,10 +32,6 @@ function Home() {
         </div>
       </div>
       <div class="row custom-row">
-        {query === "" &&
-          movieArray.map(movie => {
-            return <CreateMovieTile title={movie.Title} key={movie.imdbID} src={movie.src} imdbID={movie.imdbID}/>;
-          })}
         {searchResults.length !== 0 && searchResults.map(movie => {
           return <CreateMovieTile title={movie.Title} src={movie.Poster} key={movie.imdbID} imdbID={movie.imdbID}  />;
         })}

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 mongoose.set('useCreateIndex', true);
 
 const port = process.env.PORT || 5000 ;
-
+ 
 //CONNECTING TO MONGODB
 mongoose.connect("mongodb+srv://panzer123:" + process.env.MONGO_PASSWORD + "@cluster0-r2ehn.mongodb.net/test?retryWrites=true&w=majority" ,{ useNewUrlParser: true ,  useUnifiedTopology: true })
 .then(() => console.log("MongoDB connected"))

@@ -1,21 +1,21 @@
 import React, { useState, useContext } from "react";
-import { loginUserWithEmailAndPassword ,toVerifyToken } from "./Auth";
+import { loginUserWithEmailAndPassword, toVerifyToken } from "./Auth";
 import { UserContext } from "../UserContext";
 import { Redirect } from "react-router";
 
 function Login(props) {
-  const { user , setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [message, setMessage] = useState({
     msg: "",
-    style: { color: "red" } ,
-    iconClass : "fas fa-lock fa-9x"
+    style: { color: "red" },
+    iconClass: "fas fa-lock"
   });
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: ""
   });
 
-  async function tokenVerify(){
+  async function tokenVerify() {
     const resp = await toVerifyToken();
     setUser(resp.data.user1);
   }
@@ -28,15 +28,20 @@ function Login(props) {
       };
     });
   }
-  async function handleSubmit() {
+  async function handleSubmit(event) {
+    event.preventDefault();
     setUserLogin({
       email: "",
       password: ""
     });
-    const { email, password } = userLogin; 
+    const { email, password } = userLogin;
     const status = await loginUserWithEmailAndPassword(email, password);
     if (status === 200) {
-      setMessage({ msg: "Login Successful !", style: { color: "green" } , iconClass : "fas fa-lock-open fa-9x" });
+      setMessage({
+        msg: "Login Successful !",
+        style: { color: "green" },
+        iconClass: "fas fa-lock-open"
+      });
       tokenVerify();
       setTimeout(() => {
         props.history.push("/");
@@ -50,36 +55,38 @@ function Login(props) {
   return user ? (
     <Redirect to="/" />
   ) : (
-    <div className="container mt-5">
-      <i class={message.iconClass}></i>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          name="email"
-          class="form-control form-control-width"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          value={userLogin.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          name="password"
-          class="form-control form-control-width"
-          id="exampleInputPassword1"
-          placeholder="Password"
-          value={userLogin.password}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit" class="btn btn-primary" onClick={handleSubmit}>
-        Submit
-      </button>
+    <div className="login-dark">
+      <form onSubmit={handleSubmit}>
+        <h2 class="sr-only">Login Form</h2>
+
+        <div class="illustration">
+          <i class={message.iconClass}></i>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter email"
+            value={userLogin.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            value={userLogin.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Login
+        </button>
+      </form>
       <p style={message.style}>{message.msg}</p>
     </div>
   );

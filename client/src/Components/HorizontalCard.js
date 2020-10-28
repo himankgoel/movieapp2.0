@@ -41,17 +41,17 @@ function HorizontalCard(props){
     });
 
 
-    return <div class="card mb-3" style={{maxWidth: "540px"}}>
-    <div class="row no-gutters"> 
-      <div class="col-md-4">
-        <img src={Movie.Poster} class="card-img" alt={Movie.Title}/>
+    return <div className="card mb-3" style={{maxWidth: "540px"}}>
+    <div className="row no-gutters"> 
+      <div className="col-md-4">
+        <img src={Movie.Poster} className="card-img" alt={Movie.Title}/>
       </div>
-      <div class="col-md-8 bg-light">
-        <div class="card-body">
-          <h5 class="card-title">{Movie.Title}</h5>
-          <p class="card-text">{Movie.Plot}</p>
-          <button class="btn btn-dark" onClick={handleClick}>
-           <i class="fas fa-heart"/>  Added 
+      <div className="col-md-8 bg-light">
+        <div className="card-body">
+          <h5 className="card-title">{Movie.Title}</h5>
+          <p className="card-text">{Movie.Plot}</p>
+          <button className="btn btn-dark" onClick={handleClick}>
+           <i className="fas fa-heart"/>  Added 
       </button>
         </div>
       </div>

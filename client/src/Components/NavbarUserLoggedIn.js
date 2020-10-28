@@ -7,19 +7,19 @@ function NavbarUserLoggedIn(props) {
   }
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link class="navbar-brand" to="/">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link className="navbar-brand" to="/">
           MovieInfo
         </Link>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <Link class="nav-link" to="/favourite-movies">
-                <i class="far fa-heart" /> Favourites
+        <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/favourite-movies">
+                <i className="far fa-heart" /> Favourites
               </Link>
             </li>
             </ul>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -27,35 +27,36 @@ function NavbarUserLoggedIn(props) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <Link class="nav-link" data-toggle="modal" data-target="#myModal">
+        <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" data-toggle="modal" data-target="#myModal" to="/">
                 Logout
               </Link>
 
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Confirmation</h4>
-                      <button type="button" class="close" data-dismiss="modal">
+              <div className="modal fade" id="myModal" role="dialog">
+                <div className="modal-dialog modal-sm">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h4 className="modal-title">Confirmation</h4>
+                      <button type="button" className="close" data-dismiss="modal">
                         &times;
                       </button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <p>Do you want to Logout?.</p>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <Link
                         type="button"
                         data-dismiss="modal"
                         onClick={handleClick}
+                        to="/"
                       >
                         Logout
                       </Link>

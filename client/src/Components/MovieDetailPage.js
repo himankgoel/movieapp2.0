@@ -39,7 +39,7 @@ function MovieDetailPage(props){
             setMovie({Title,Year,Rated,Released,Runtime,Genre, Director , Plot, Poster, Ratings,type});
     });
     },[props.match.params.movieid]);
-    return <div class="row second-row">
+    return <div className="row second-row">
         <div className="col-lg-4">
             <img src={Movie.Poster}
              alt={Movie.Title}/>

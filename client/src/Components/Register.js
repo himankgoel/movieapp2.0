@@ -30,14 +30,10 @@ function Register(props) {
       };
     });
   }
-  async function handleSubmit() {
-    setUserRegister({
-      name: "",
-      email: "",
-      password: ""
-    });
+  function handleSubmit(e) {
+    
     const { name, email, password } = userRegister;
-    const status = await registerUserWithNameEmailAndPass(
+    const status = registerUserWithNameEmailAndPass(
       name,
       email,
       password
@@ -63,6 +59,12 @@ function Register(props) {
     } else {
       setMessage({ msg: "Unexpected error", style: { color: "red" } , iconClass: "fas fa-user-edit" });
     }
+    setUserRegister({
+      name: "",
+      email: "",
+      password: ""
+    });
+    e.preventDefault();
   }
 
   return user ? (
@@ -71,42 +73,42 @@ function Register(props) {
     <div className="login-dark">
       
       <form onSubmit={handleSubmit}>
-      <h2 class="sr-only">Register Form</h2>
-      <div class="illustration">
-          <i class={message.iconClass}></i>
+      <h2 className="sr-only">Register Form</h2>
+      <div className="illustration">
+          <i className={message.iconClass}></i>
         </div>
-      <div class="form-group">
+      <div className="form-group">
         <input
           type="text"
           name="name"
-          class="form-control"
+          className="form-control"
           placeholder="Enter name"
           onChange={handleChange}
           value={userRegister.name}
         />
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <input
           type="email"
-          class="form-control"
+          className="form-control"
           name="email"
           placeholder="Enter email"
           onChange={handleChange}
           value={userRegister.email}
         />
       </div>
-      <div class="form-group">
+      <div className="form-group">
         <input
           type="password"
-          class="form-control form-control-width"
+          className="form-control form-control-width"
           name="password"
           placeholder="Password"
           onChange={handleChange}
           value={userRegister.password}
         />
       </div>
-      <button type="submit" class="btn btn-primary btn-block" >
+      <button type="submit" className="btn btn-primary btn-block" >
         Register
       </button>
       </form>

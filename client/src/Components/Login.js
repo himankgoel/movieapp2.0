@@ -29,11 +29,6 @@ function Login(props) {
     });
   }
   async function handleSubmit(event) {
-    event.preventDefault();
-    setUserLogin({
-      email: "",
-      password: ""
-    });
     const { email, password } = userLogin;
     const status = await loginUserWithEmailAndPassword(email, password);
     if (status === 200) {
@@ -51,39 +46,44 @@ function Login(props) {
     } else {
       setMessage({ msg: "Invalid Credentials.", style: { color: "red" } });
     }
+    event.preventDefault();
+    setUserLogin({
+      email: "",
+      password: ""
+    });
   }
   return user ? (
     <Redirect to="/" />
   ) : (
     <div className="login-dark">
       <form onSubmit={handleSubmit}>
-        <h2 class="sr-only">Login Form</h2>
+        <h2 className="sr-only">Login Form</h2>
 
-        <div class="illustration">
-          <i class={message.iconClass}></i>
+        <div className="illustration">
+          <i className={message.iconClass}></i>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="email"
             name="email"
-            class="form-control"
+            className="form-control"
             placeholder="Enter email"
             value={userLogin.email}
             onChange={handleChange}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="password"
             name="password"
-            class="form-control"
+            className="form-control"
             placeholder="Password"
             value={userLogin.password}
             onChange={handleChange}
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">
+        <button type="submit" className="btn btn-primary btn-block">
           Login
         </button>
       </form>

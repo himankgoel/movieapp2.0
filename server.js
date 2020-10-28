@@ -16,10 +16,9 @@ mongoose.set('useCreateIndex', true);
 const port = process.env.PORT || 5000 ;
  
 //CONNECTING TO MONGODB
-mongoose.connect("mongodb+srv://panzer123:" + process.env.MONGO_PASSWORD + "@cluster0-r2ehn.mongodb.net/test?retryWrites=true&w=majority" ,{ useNewUrlParser: true ,  useUnifiedTopology: true })
+mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_PASSWORD}@cluster0.r2ehn.mongodb.net/<dbname>?retryWrites=true&w=majority` ,{ useNewUrlParser: true ,  useUnifiedTopology: true })
 .then(() => console.log("MongoDB connected"))
 .catch((err) => {console.log(err)});
-
 //movieUser Schema with Name, Email, Password as Hash 
 
 const movieDBUserSchema = new mongoose.Schema({
@@ -29,8 +28,7 @@ const movieDBUserSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:true,
-        unique:true
+        required:true
     },
     password:{
         type:String,
@@ -74,7 +72,7 @@ const movieUser = mongoose.model("movieUser", movieDBUserSchema);
         //Create salt and Hash
         bcrypt.hash(req.body.password,10,(err,hash) => {
             if(err) throw err;
-            const newUser = new movieUser({
+            const newUser = new movieUser({ 
                 name: req.body.name,
                 email : req.body.email,
                 password: hash
@@ -173,12 +171,12 @@ app.post("/api/user/login" , (req,res) => {
      });
     
     
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("client/build"));
-    app.get("*",(req,res) => {
-        res.sendFile(path.resolve(__dirname,"client","build","index.html"));
-    });
-}
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static("client/build"));
+//     app.get("*",(req,res) => {
+//         res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+//     });
+// }
 app.listen(port,() => {
     console.log("Server started at port 5000!");
 });

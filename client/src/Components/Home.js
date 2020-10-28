@@ -18,20 +18,20 @@ function Home() {
 
   return (
     <div>
-      <div class="row ">
-          <div class="col-lg-6 container mt-5 col-sm-10">
+      <div className="row ">
+          <div className="col-lg-6 container mt-5 col-sm-10">
         <input
         style={{borderColor : "black"}}
           type="text"
-          class="form-control"
+          className="form-control"
           id="exampleFormControlInput1"
           placeholder="Search for movie,series.."
           onChange={handleChange}
-          autoFocus="true"
+          autoFocus={true}
         />
         </div>
       </div>
-      <div class="row custom-row">
+      <div className="row custom-row">
         {searchResults.length !== 0 && searchResults.map(movie => {
           return <CreateMovieTile title={movie.Title} src={movie.Poster} key={movie.imdbID} imdbID={movie.imdbID}  />;
         })}

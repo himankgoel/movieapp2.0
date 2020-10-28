@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route} from "react-router-dom";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
@@ -28,7 +28,6 @@ function App() {
   }, [user]);
   return (
     <BrowserRouter>
-      <Switch>
         <div>
           <UserContext.Provider value={{ user, setUser }}>
             {user ? <NavbarUserLoggedIn /> : <Navbar />}
@@ -39,7 +38,6 @@ function App() {
             <Route exact path="/favourite-movies" component={FavouriteMovies} />
           </UserContext.Provider>
         </div>
-      </Switch>
     </BrowserRouter>
   );
 }

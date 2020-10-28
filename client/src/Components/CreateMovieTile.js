@@ -24,43 +24,43 @@ function CreateMovieTile(props) {
 
   
   return (
-    <div class="card" style={{ width: "14rem" }}>
+    <div className="card" style={{ width: "14rem" }}>
       <Link to={to}>
-        <img src={props.src} class="card-img-top" alt={props.alt} />
+        <img src={props.src} className="card-img-top" alt={props.alt} />
       </Link>
-      <div class="card-body">
-        <h5 class="card-title">{props.title}</h5>
+      <div className="card-body">
+        <h5 className="card-title">{props.title}</h5>
 
         {user === null && (
-          <Link to="/login" class="btn btn-dark">
-            <i class="far fa-heart" /> Add to Favourites
+          <Link to="/login" className="btn btn-dark">
+            <i className="far fa-heart" /> Add to Favourites
           </Link>
         )}
         {user !== null && (!isAddedToFavourite) && (
-          <button class="btn btn-dark" onClick={handleClickToAdd}>
-               <i class="far fa-heart" /> Add to Favourites
+          <button className="btn btn-dark" onClick={handleClickToAdd}>
+               <i className="far fa-heart" /> Add to Favourites
           </button>
         )}
         {user !== null && (isAddedToFavourite) && (
-           <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-           <i class="fas fa-heart" />  Added 
+           <button className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+           <i className="fas fa-heart" />  Added 
       </button>
         )}
       </div>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         To remove, go to favourite movie page
       </div>
-      <div class="modal-footer">
-        <Link type="button" class="btn btn-primary" data-dismiss="modal">Movies can be removed from Favourites Tab</Link>
+      <div className="modal-footer">
+        <Link type="button" classNameName="btn btn-primary" data-dismiss="modal">Movies can be removed from Favourites Tab</Link>
       </div>
     </div>
   </div>
